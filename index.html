@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="ZINGO NEWS — The Story Behind the Headlines. News from Kenya, Africa and the world.">
+  <title>ZINGO NEWS | The Story Behind the Headlines</title>
+
+  <style>
+    :root {
+      --black: #080808;
+      --red: #e50914;
+      --white: #ffffff;
+      --muted: #a6a6a6;
+      --panel: #151515;
+      --line: #292929;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input { font: inherit; }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    .topbar {
+      background: var(--red);
+      padding: 7px 0;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 8, 8, .97);
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      background: var(--red);
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      font-weight: 900;
+      font-style: italic;
+      border-radius: 8px;
+    }
+
+    .brand-name {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -.8px;
+      line-height: 1.1;
+    }
+
+    .brand-name span { color: var(--red); }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .6px;
+      margin-top: 5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    nav a:hover { color: var(--red); }
+
+    .menu-button {
+      display: none;
+      color: white;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 11px;
+    }
+
+    .hero {
+      padding: 58px 0 42px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 90% 15%, #451014 0%, transparent 40%),
+        var(--black);
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: .99;
+      letter-spacing: -3px;
+      max-width: 780px;
+      margin: 18px 0;
+    }
+
+    h1 span { color: var(--red); }
+
+    .hero p {
+      color: #c4c4c4;
+      max-width: 560px;
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 13px;
+      border: 1px solid var(--red);
+    }
+
+    .button-primary {
+      background: var(--red);
+      color: white;
+    }
+
+    .button-secondary { background: transparent; }
+
+    .section { padding: 38px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      font-size: 25px;
+      margin: 0;
+      letter-spacing: -.6px;
+    }
+
+    h2 span { color: var(--red); }
+
+    .search {
+      display: flex;
+      max-width: 330px;
+      width: 100%;
+    }
+
+    .search input {
+      width: 100%;
+      min-width: 0;
+      background: var(--panel);
+      color: white;
+      border: 1px solid var(--line);
+      padding: 11px 13px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+
+    .search input:focus { border-color: var(--red); }
+
+    .search button {
+      background: var(--red);
+      color: white;
+      border: 0;
+      padding: 0 14px;
+      border-radius: 0 5px 5px 0;
+      font-weight: bold;
+    }
+
+    .categories {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .category {
+      background: var(--panel);
+      color: #ddd;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 7px 15px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .category.active,
+    .category:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .news-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--red);
+    }
+
+    .card-art {
+      height: 150px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #33090d, #111 75%);
+      font-size: 44px;
+      font-weight: 900;
+    }
+
+    .card-body { padding: 17px; }
+
+    .label {
+      display: inline-block;
+      color: #ff626a;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .news-card h3 {
+      font-size: 19px;
+      line-height: 1.3;
+      margin: 9px 0;
+    }
+
+    .news-card p {
+      font-size: 13px;
+      color: #b5b5b5;
+      margin: 0 0 12px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .empty {
+      display: none;
+      color: var(--muted);
+      padding: 25px 0;
+    }
+
+    .about {
+      background: #111;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about p { color: #b8b8b8; }
+
+    .about-mark {
+      color: var(--red);
+      font-size: 68px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    footer { padding: 30px 0; }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner strong { color: white; }
+
+    @media (max-width: 800px) {
+      .header-inner { min-height: 72px; }
+      .menu-button { display: block; }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 20px 4%;
+        background: #101010;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.open { display: flex; }
+      .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { padding-top: 42px; }
+    }
+
+    @media (max-width: 520px) {
+      .brand-name { font-size: 19px; }
+      .brand-mark { width: 41px; height: 41px; font-size: 24px; }
+      .tagline { font-size: 9px; }
+      h1 { letter-spacing: -1.8px; }
+      .news-grid { grid-template-columns: 1fr; }
+      .card-art { height: 135px; }
+      .about-inner { grid-template-columns: 1fr; gap: 5px; }
+      .about-mark { display: none; }
+      .search { max-width: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span>KENYA · AFRICA · THE WORLD</span>
+      <span>THE STORY BEHIND THE HEADLINES</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Zingo News home">
+        <div class="brand-mark">Z</div>
+        <div>
+          <div class="brand-name">ZINGO <span>NEWS</span></div>
+          <div class="tagline">THE STORY BEHIND THE HEADLINES</div>
+        </div>
+      </a>
+
+      <button class="menu-button" id="menuButton"
+        aria-label="Toggle navigation" aria-expanded="false">☰ MENU</button>
+
+      <nav id="navigation">
+        <a href="#">HOME</a>
+        <a href="#latest">LATEST</a>
+        <a href="#latest" data-nav-category="Kenya">KENYA</a>
+        <a href="#latest" data-nav-category="Africa">AFRICA</a>
+        <a href="#latest" data-nav-category="World">WORLD</a>
+        <a href="#about">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Independent thinking. Informed living.</div>
+        <h1>THE NEWS.<br>THE CONTEXT.<br><span>THE TRUTH.</span></h1>
+        <p>
+          From Kenya to every corner of the globe, discover the stories,
+          ideas and perspectives shaping our world.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#latest">EXPLORE STORIES ↓</a>
+          <a class="button button-secondary" href="#about">OUR MISSION</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="latest">
+      <div class="container">
+        <div class="section-heading">
+          <h2>INSIDE THE <span>HEADLINES</span></h2>
+          <form class="search" id="searchForm">
+            <input id="searchInput" type="search"
+              placeholder="Search stories..." aria-label="Search stories">
+            <button type="submit">SEARCH</button>
+          </form>
+        </div>
+
+        <div class="categories" aria-label="Filter stories">
+          <button class="category active" data-category="All">ALL STORIES</button>
+          <button class="category" data-category="Kenya">KENYA</button>
+          <button class="category" data-category="Politics">POLITICS</button>
+          <button class="category" data-category="Africa">AFRICA</button>
+          <button class="category" data-category="World">WORLD</button>
+          <button class="category" data-category="Business">BUSINESS</button>
+          <button class="category" data-category="Tech">TECH</button>
+          <button class="category" data-category="Culture">CULTURE</button>
+        </div>
+
+        <!-- Demonstration cards: replace with verified, published stories. -->
+        <div class="news-grid" id="newsGrid">
+          <article class="news-card" data-category="Kenya">
+            <div class="card-art">KE</div>
+            <div class="card-body">
+              <span class="label">Kenya</span>
+              <h3>Understanding the issues shaping everyday life in Kenya</h3>
+              <p>A space for verified reporting, useful context and voices from across the country.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="Politics">
+            <div class="card-art">01</div>
+            <div class="card-body">
+              <span class="label">Politics</span>
+              <h3>Beyond the headlines: making sense of public policy</h3>
+              <p>Clear explanations of decisions, institutions and the issues that affect citizens.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="Africa">
+            <div class="card-art">AF</div>
+            <div class="card-body">
+              <span class="label">Africa</span>
+              <h3>Ideas, people and developments across the continent</h3>
+              <p>Explore the events and perspectives influencing Africa's future.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="World">
+            <div class="card-art">GL</div>
+            <div class="card-body">
+              <span class="label">World</span>
+              <h3>Global developments explained with context</h3>
+              <p>International affairs presented with background and attention to reliable sources.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="Business">
+            <div class="card-art">↗</div>
+            <div class="card-body">
+              <span class="label">Business</span>
+              <h3>Markets, work and ideas shaping the economy</h3>
+              <p>Accessible coverage of business, entrepreneurship and economic trends.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="Tech">
+            <div class="card-art">01</div>
+            <div class="card-body">
+              <span class="label">Technology</span>
+              <h3>How innovation is changing the way we live</h3>
+              <p>Technology news focused on real-world impact, opportunities and challenges.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="Culture">
+            <div class="card-art">✦</div>
+            <div class="card-body">
+              <span class="label">Culture</span>
+              <h3>The people, creativity and stories that connect us</h3>
+              <p>Discover arts, entertainment, identity and changing cultural conversations.</p>
+              <div class="meta">DEMO CONTENT · REPLACE BEFORE LAUNCH</div>
+            </div>
+          </article>
+        </div>
+
+        <p class="empty" id="emptyMessage">No matching stories. Try another search.</p>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about-inner">
+        <div>
+          <div class="eyebrow">Who we are</div>
+          <h2>MORE THAN A <span>HEADLINE.</span></h2>
+          <p>
+            ZINGO NEWS aims to bring readers clear, responsible and engaging
+            journalism from Kenya, Africa and around the world.
+            Our mission is to put stories into context and help readers
+            make sense of the issues that matter.
+          </p>
+          <p><strong>The Story Behind the Headlines.</strong></p>
+        </div>
+        <div class="about-mark">Z.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <strong>ZINGO <span style="color:#e50914">NEWS</span></strong>
+      <span>Independent thinking. Informed living.</span>
+      <span>© <span id="year"></span> ZINGO NEWS</span>
+    </div>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = [...document.querySelectorAll(".news-card")];
+    const categoryButtons = [...document.querySelectorAll(".category")];
+    const emptyMessage = document.getElementById("emptyMessage");
+    const menuButton = document.getElementById("menuButton");
+    const navigation = document.getElementById("navigation");
+    let selectedCategory = "All";
+
+    function filterStories() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchesCategory =
+          selectedCategory === "All" ||
+          card.dataset.category === selectedCategory;
+        const matchesSearch = card.textContent.toLowerCase().includes(query);
+        const show = matchesCategory && matchesSearch;
+
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      emptyMessage.style.display = visible ? "none" : "block";
+    }
+
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category;
+
+        categoryButtons.forEach(item =>
+          item.classList.toggle("active", item === button)
+        );
+
+        filterStories();
+      });
+    });
+
+    document.getElementById("searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      filterStories();
+    });
+
+    searchInput.addEventListener("input", filterStories);
+
+    document.querySelectorAll("[data-nav-category]").forEach(link => {
+      link.addEventListener("click", () => {
+        selectedCategory = link.dataset.navCategory;
+        categoryButtons.forEach(button =>
+          button.classList.toggle(
+            "active",
+            button.dataset.category === selectedCategory
+          )
+        );
+        filterStories();
+        navigation.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    menuButton.addEventListener("click", () => {
+      const open = navigation.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(open));
+    });
+
+    navigation.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (!link.dataset.navCategory) {
+          navigation.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
